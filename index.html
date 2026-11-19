@@ -459,4 +459,13 @@ $('checkUpdates').addEventListener('click',()=>checkForUpdates(true));
 checkForUpdates(false);
 setInterval(()=>checkForUpdates(false),5*60*1000);
 </script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(() => console.log("تم تفعيل تحديثات طمأنينة"))
+      .catch((error) => console.error("خطأ في التحديث:", error));
+  });
+}
+</script>
 </body></html>
