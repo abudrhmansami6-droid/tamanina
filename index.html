@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#173d32">
+<title>طمأنينة</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#173d32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+
+<style>
+:root{--green:#173d32;--green2:#285a46;--cream:#fff7e6;--gold:#c9a15c;--ink:#203a2d}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(160deg,#f8e9cf,#e4edda 58%,#d3e4d1);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:var(--ink)}
+.app{max-width:520px;margin:auto;min-height:100vh;padding:15px 14px 25px;display:flex;flex-direction:column;gap:12px}
+header{display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:850;font-size:18px;color:var(--green)}
+.pill{border:1px solid #d9c18b;background:#fff8e9;border-radius:18px;padding:8px 12px;font-size:13px}
+h1{text-align:center;margin:5px 0 0;font-size:28px;color:#1d563d}
+.subtitle{text-align:center;margin:0;color:#6b765e;font-size:13px}
+.phrases{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.phrases button{border:1px solid #d7c69e;background:#fff8e9;color:#31523c;border-radius:14px;padding:11px 3px;font-size:14px;font-weight:800}
+.phrases button.active{background:#1c4b39;color:#fff;border-color:#1c4b39;box-shadow:0 3px 9px #244a3430}
+.scene{height:355px;position:relative;overflow:hidden;border-radius:25px;border:3px solid #fff9eb;box-shadow:0 8px 24px #53694a35;background:linear-gradient(#f7dba9 0%,#dcebcf 58%,#9ab58a 100%);transition:background .5s}
+.sun{position:absolute;top:24px;left:34px;width:53px;height:53px;border-radius:50%;background:#fff2c5;box-shadow:0 0 36px #fff4c5}
+.distant{position:absolute;bottom:65px;left:-10%;width:120%;height:120px;background:#8da982;border-radius:50% 50% 0 0}
+.distant:after{content:"";position:absolute;bottom:0;left:25%;width:100%;height:95px;background:#6f936d;border-radius:50% 50% 0 0}
+.ground{position:absolute;bottom:0;height:68px;width:100%;background:linear-gradient(#a8794f,#765238);border-top:5px solid #d5b17b;box-shadow:0 -4px 12px #30452b33}
+.flower{position:absolute;bottom:46px;font-size:24px;filter:drop-shadow(0 2px 2px #5555)}
+.flower.f1{left:8%}.flower.f2{right:9%}.flower.f3{left:25%;font-size:18px}
+.jar-shell{position:absolute;z-index:3;bottom:37px;left:50%;transform:translateX(-50%);width:220px;height:275px}
+.jar-mouth{position:absolute;z-index:2;top:0;left:22px;width:176px;height:27px;border:7px solid #fff9e9;border-radius:50%;background:#ffffff66;box-shadow:0 3px 5px #4a503833}
+.jar-glass{position:absolute;top:12px;bottom:0;left:0;right:0;border:5px solid #ffffffb8;border-top:3px solid #fff9e9;border-radius:32px 32px 25px 25px;background:linear-gradient(90deg,#ffffff78,#ffffff12 22%,#ffffff30 70%,#ffffff8a);box-shadow:inset 9px 0 17px #fff9,inset -8px 0 15px #fff8,0 8px 14px #354c3540;overflow:hidden}
+.jar-glass:before{content:"";position:absolute;left:12px;top:22px;bottom:20px;width:9px;border-radius:20px;background:#ffffff70;filter:blur(2px)}
+.jar-glass:after{content:"";position:absolute;right:15px;top:45px;bottom:20px;width:4px;border-radius:20px;background:#ffffff55}
+#beadCanvas{position:absolute;inset:0;width:100%;height:100%}
+.jar-caption{position:absolute;z-index:4;top:87px;left:24px;right:24px;text-align:center;border:2px solid #d7b66d;border-radius:14px;background:#fff7e8ed;padding:7px 3px;color:#294d38;font-size:12px;font-weight:700;pointer-events:none}
+.jar-caption strong{display:block;font-size:27px;line-height:1.2}
+.plant{position:absolute;z-index:2;bottom:42px;left:20px;font-size:55px;filter:drop-shadow(0 3px 3px #3345)}
+.stars{position:absolute;inset:0;display:none;color:#fff8d7}
+.stars span{position:absolute;text-shadow:0 0 10px #fff;font-size:17px;animation:twinkle 2.4s infinite alternate}
+@keyframes twinkle{from{opacity:.35;transform:scale(.8)}to{opacity:1;transform:scale(1.2)}}
+.scene.sky{background:linear-gradient(#10284d,#354e70 65%,#63766b)}
+.scene.garden{background:linear-gradient(#c8e9d0,#a4c98d 60%,#729b68)}
+.scene.sky .sun{display:none}
+.scene.sky .distant{background:#334d61}.scene.sky .distant:after{background:#253f50}
+.scene.sky .ground{background:linear-gradient(#465b52,#263d37);border-color:#8da78b}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.stat{background:#fff8e9;border:1px solid #e1d0a9;border-radius:14px;padding:9px 3px;text-align:center;font-size:11px;color:#68715e}
+.stat b{display:block;font-size:21px;color:var(--green)}
+.action{border:0;border-radius:19px;background:linear-gradient(#fff5d9,#e8c77d);color:#174632;font-size:25px;font-weight:900;padding:15px;box-shadow:0 5px 0 #b48a43,0 9px 18px #5c704333;touch-action:manipulation}
+.action:active{transform:translateY(3px);box-shadow:0 2px 0 #b48a43}
+.hint{text-align:center;font-size:12px;color:#6b765e;margin:0}
+.worlds{display:flex;gap:8px}
+.worlds button{flex:1;border:1px solid #d8c69b;background:#fff8e9;color:#31523c;padding:9px 4px;border-radius:13px;font-weight:700;font-size:12px}
+.worlds button.active{background:#315b43;color:white}
+.reset{border:0;background:transparent;color:#7b806e;text-decoration:underline;font-size:11px;padding:4px}
+footer{text-align:center;font-size:10px;color:#78816f}
+@media(max-height:740px){.scene{height:315px}.jar-shell{transform:translateX(-50%) scale(.9);transform-origin:bottom center}}
+</style>
+</head>
+<body>
+<main class="app">
+<header><div class="brand">🌿 طمأنينة</div><div class="pill">اليوم: <b id="today">0</b></div></header>
+<section><h1 id="heading">الحمد لله</h1><p class="subtitle">اختر الذكر، ثم اضغط مع كل مرة</p></section>
+<section class="phrases" aria-label="اختيار الذكر">
+<button class="active" data-phrase="الحمد لله">الحمد لله</button>
+<button data-phrase="سبحان الله">سبحان الله</button>
+<button data-phrase="أستغفر الله">أستغفر الله</button>
+</section>
+<section class="scene" id="scene">
+<div class="sun"></div><div class="distant"></div><div class="ground"></div>
+<div class="flower f1">🌼</div><div class="flower f2">🌸</div><div class="flower f3">🌷</div>
+<div class="stars" id="starscape"></div>
+<div class="plant" id="plant">🌱</div>
+<div class="jar-shell" id="jarShell">
+<div class="jar-mouth"></div>
+<div class="jar-glass"><canvas id="beadCanvas"></canvas></div>
+<div class="jar-caption">عدد هذا الذكر<strong id="phraseCount">0</strong></div>
+</div>
+</section>
+<section class="stats">
+<div class="stat">هذا الذكر<b id="current">0</b></div>
+<div class="stat">إجمالي اليوم<b id="daily">0</b></div>
+<div class="stat">الإجمالي الكلي<b id="total">0</b></div>
+</section>
+<button class="action" id="add">الحمد لله</button>
+<p class="hint">كل ضغطة تُسجّل مرة واحدة 🤍</p>
+<section class="worlds">
+<button class="active" data-world="jar">🫙 العلبة</button>
+<button data-world="garden">🌱 الحديقة</button>
+<button data-world="sky">🌌 السماء</button>
+</section>
+<button class="reset" id="soundToggle">🔊 الصوت: مغلق</button>
+<button class="reset" id="reset">تصفير عداد هذا الذكر فقط</button>
+<footer>يحفظ التطبيق أعدادك على هذا الجهاز — يعمل دون إنترنت</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const todayKey=new Date().toLocaleDateString('en-CA');
+let store=JSON.parse(localStorage.getItem('dhikr_v2')||'{}');
+if(store.date!==todayKey){store.date=todayKey;store.daily=0;store.byDay={}}
+store.counts=store.counts||{'الحمد لله':0,'سبحان الله':0,'أستغفر الله':0};
+store.daily=store.daily||0;store.total=store.total||0;
+let selected='الحمد لله',world='jar';
+const counts=()=>store.counts[selected]||0;
+function save(){localStorage.setItem('dhikr_v2',JSON.stringify(store));render()}
+function render(){
+$('heading').textContent=selected;$('add').textContent=selected;
+$('phraseCount').textContent=counts();$('current').textContent=counts();
+$('today').textContent=store.daily;$('daily').textContent=store.daily;$('total').textContent=store.total;
+const level=Math.min(5,Math.floor(store.total/25));
+$('plant').textContent=['🌱','🌿','🪴','🌳','🌸','🌺'][level];
+const sf=$('starscape');sf.innerHTML='';
+for(let i=0;i<Math.min(42,Math.floor(store.total/2));i++){let s=document.createElement('span');s.textContent='✦';s.style.left=((i*37)%94+3)+'%';s.style.top=((i*23)%78+4)+'%';s.style.animationDelay=(i%5)*.3+'s';sf.appendChild(s)}
+}
+document.querySelectorAll('[data-phrase]').forEach(btn=>btn.addEventListener('click',()=>{
+selected=btn.dataset.phrase;document.querySelectorAll('[data-phrase]').forEach(x=>x.classList.toggle('active',x===btn));render();
+}));
+document.querySelectorAll('[data-world]').forEach(btn=>btn.addEventListener('click',()=>{
+world=btn.dataset.world;document.querySelectorAll('[data-world]').forEach(x=>x.classList.toggle('active',x===btn));
+$('scene').classList.toggle('garden',world==='garden');$('scene').classList.toggle('sky',world==='sky');
+$('jarShell').style.display=world==='jar'?'block':'none';$('plant').style.display=world==='garden'?'block':'none';$('starscape').style.display=world==='sky'?'block':'none';
+}));
+$('reset').addEventListener('click',()=>{
+if(confirm('هل تريد تصفير عداد هذا الذكر؟ لن يتغير إجمالي اليوم.')){store.counts[selected]=0;save();beads=[];draw()}
+});
+$('add').addEventListener('click',()=>{
+store.counts[selected]=(store.counts[selected]||0)+1;store.daily++;store.total++;save();
+if(world==='jar')addBead();
+playSoftSound();
+if(navigator.vibrate)navigator.vibrate(8);
+if(counts()%33===0){$('add').textContent='ما شاء الله، أحسنت';setTimeout(()=>$('add').textContent=selected,1100)}
+});
+// Beads use fixed resting slots: each bead falls smoothly into place
+// without repeated collisions or irritating bouncing.
+const canvas=$('beadCanvas'),ctx=canvas.getContext('2d');
+let beads=[], soundOn=false, audioCtx=null;
+function resize(){
+ const r=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);
+ canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);
+ ctx.setTransform(dpr,0,0,dpr,0,0);draw();
+}
+function slotFor(index){
+ const w=canvas.clientWidth,h=canvas.clientHeight;
+ const cols=8, gap=22, row=Math.floor(index/cols), col=index%cols;
+ const offset=(row%2)*gap/2;
+ return {x:w/2+(col-(cols-1)/2)*gap+offset,
+         y:h-18-row*19};
+}
+function addBead(){
+ const index=beads.length, target=slotFor(index);
+ beads.push({x:canvas.clientWidth/2+(Math.random()-.5)*8,y:-18,
+   tx:target.x,ty:target.y,r:10.2,started:performance.now(),duration:520});
+}
+function draw(now=performance.now()){
+ const w=canvas.clientWidth,h=canvas.clientHeight;
+ ctx.clearRect(0,0,w,h);
+ beads.forEach(b=>{
+   if(b.duration){
+     const p=Math.min(1,(now-b.started)/b.duration);
+     const ease=1-Math.pow(1-p,3);
+     b.x=b.x+(b.tx-b.x)*ease;
+     b.y=(-18)+(b.ty+18)*ease;
+     if(p>=1){b.x=b.tx;b.y=b.ty;b.duration=0}
+   }
+   ctx.save();
+   ctx.shadowColor='rgba(35,45,35,.20)';ctx.shadowBlur=3;ctx.shadowOffsetY=2;
+   const g=ctx.createRadialGradient(b.x-b.r*.35,b.y-b.r*.4,b.r*.08,b.x,b.y,b.r*1.15);
+   g.addColorStop(0,'#ffffff');g.addColorStop(.24,'#fffdf4');
+   g.addColorStop(.67,'#e9dfc9');g.addColorStop(1,'#a99d87');
+   ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+   ctx.shadowColor='transparent';
+   ctx.beginPath();ctx.ellipse(b.x-b.r*.28,b.y-b.r*.35,b.r*.22,b.r*.12,-.6,0,Math.PI*2);
+   ctx.fillStyle='rgba(255,255,255,.85)';ctx.fill();ctx.restore();
+ });
+ requestAnimationFrame(draw);
+}
+function initBeads(){
+ beads=[];
+ const n=Math.min(counts(),65);
+ for(let i=0;i<n;i++){
+   const p=slotFor(i);
+   beads.push({x:p.x,y:p.y,tx:p.x,ty:p.y,r:10.2,duration:0});
+ }
+ draw(performance.now());
+}
+function playSoftSound(){
+ if(!soundOn)return;
+ try{
+   audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
+   if(audioCtx.state==='suspended')audioCtx.resume();
+   const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+   osc.type='sine';osc.frequency.setValueAtTime(660,audioCtx.currentTime);
+   osc.frequency.exponentialRampToValueAtTime(440,audioCtx.currentTime+.055);
+   gain.gain.setValueAtTime(.0001,audioCtx.currentTime);
+   gain.gain.exponentialRampToValueAtTime(.045,audioCtx.currentTime+.008);
+   gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.085);
+   osc.connect(gain);gain.connect(audioCtx.destination);
+   osc.start();osc.stop(audioCtx.currentTime+.09);
+ }catch(e){}
+}
+$('soundToggle').addEventListener('click',()=>{
+ soundOn=!soundOn;
+ $('soundToggle').textContent=soundOn?'🔔 الصوت: يعمل':'🔊 الصوت: مغلق';
+ if(soundOn)playSoftSound();
+});
+window.addEventListener('resize',()=>{resize();initBeads()});
+render();resize();initBeads();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+</script>
+</body></html>

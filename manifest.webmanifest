@@ -1,0 +1,22 @@
+{
+  "id": "./",
+  "name": "طمأنينة – مسبحة ذكية",
+  "short_name": "طمأنينة",
+  "description": "تطبيق عربي للحمد والتسبيح والاستغفار",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8e9cf",
+  "theme_color": "#173d32",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
