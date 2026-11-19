@@ -4,13 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#173d32">
-<title>طمأنينة</title>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#173d32">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-
+<title>عالمي مع الذكر</title>
 <style>
 :root{--green:#173d32;--green2:#285a46;--cream:#fff7e6;--gold:#c9a15c;--ink:#203a2d}
 *{box-sizing:border-box}
@@ -40,14 +34,13 @@ h1{text-align:center;margin:5px 0 0;font-size:28px;color:#1d563d}
 .jar-caption{position:absolute;z-index:4;top:87px;left:24px;right:24px;text-align:center;border:2px solid #d7b66d;border-radius:14px;background:#fff7e8ed;padding:7px 3px;color:#294d38;font-size:12px;font-weight:700;pointer-events:none}
 .jar-caption strong{display:block;font-size:27px;line-height:1.2}
 .plant{position:absolute;z-index:2;bottom:42px;left:20px;font-size:55px;filter:drop-shadow(0 3px 3px #3345)}
-.stars{position:absolute;inset:0;display:none;color:#fff8d7}
-.stars span{position:absolute;text-shadow:0 0 10px #fff;font-size:17px;animation:twinkle 2.4s infinite alternate}
-@keyframes twinkle{from{opacity:.35;transform:scale(.8)}to{opacity:1;transform:scale(1.2)}}
-.scene.sky{background:linear-gradient(#10284d,#354e70 65%,#63766b)}
-.scene.garden{background:linear-gradient(#c8e9d0,#a4c98d 60%,#729b68)}
-.scene.sky .sun{display:none}
-.scene.sky .distant{background:#334d61}.scene.sky .distant:after{background:#253f50}
-.scene.sky .ground{background:linear-gradient(#465b52,#263d37);border-color:#8da78b}
+.scene.garden{background:linear-gradient(#d9f0d8,#a8d19b 60%,#6f9c67)}
+#forestCanvas{position:absolute;inset:0;width:100%;height:100%;display:none}
+.scene.garden #forestCanvas{display:block}
+.scene.garden .sun{display:block;top:22px;left:28px;width:48px;height:48px}
+.forest-label{position:absolute;z-index:5;top:14px;left:12px;right:12px;text-align:center;color:#24533e;font-weight:850;font-size:13px;text-shadow:0 1px 0 #ffffffaa;pointer-events:none}
+.forest-label b{display:inline-block;background:#ffffffc9;border:1px solid #ffffff;border-radius:20px;padding:6px 12px;box-shadow:0 3px 10px #244a3420}
+.scene.garden .distant,.scene.garden .ground,.scene.garden .flower,.scene.garden .plant{display:none}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
 .stat{background:#fff8e9;border:1px solid #e1d0a9;border-radius:14px;padding:9px 3px;text-align:center;font-size:11px;color:#68715e}
 .stat b{display:block;font-size:21px;color:var(--green)}
@@ -60,11 +53,21 @@ h1{text-align:center;margin:5px 0 0;font-size:28px;color:#1d563d}
 .reset{border:0;background:transparent;color:#7b806e;text-decoration:underline;font-size:11px;padding:4px}
 footer{text-align:center;font-size:10px;color:#78816f}
 @media(max-height:740px){.scene{height:315px}.jar-shell{transform:translateX(-50%) scale(.9);transform-origin:bottom center}}
+
+.extra-page{min-height:65vh;padding:8px 2px 18px}.extra-page h2{text-align:center;color:var(--green);margin:8px 0}.page-lead{text-align:center;color:#6b765e;font-size:13px;margin:0 0 16px}
+.bottom-nav{position:sticky;bottom:8px;z-index:20;display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:7px 4px;background:#fffaf0ed;border:1px solid #e4d4ad;border-radius:18px;box-shadow:0 5px 18px #344b3220;backdrop-filter:blur(10px)}
+.bottom-nav button{border:0;background:transparent;color:#667463;border-radius:12px;padding:7px 1px;font-size:17px;display:flex;flex-direction:column;align-items:center;gap:3px}.bottom-nav button span{font-size:10px;font-weight:700}.bottom-nav button.active{background:#e3ecd9;color:#1c4b39}
+.quick-list{display:grid;gap:9px}.quick-list button{border:1px solid #dfd0a9;background:#fffaf0;border-radius:15px;padding:14px;text-align:right;color:#244b38;font-weight:800;font-size:16px;box-shadow:0 3px 9px #465b3210}.quick-list button span{display:block;font-size:11px;font-weight:500;color:#78816f;margin-top:4px}
+.soft-card,.dua-card{background:#fffaf0;border:1px solid #e2d3ad;border-radius:18px;padding:15px;margin:12px 0;box-shadow:0 5px 16px #465b3210}.soft-card p,.dua-card p{line-height:1.9;margin:8px 0 0;color:#52634f;font-size:14px}.goal-card{text-align:center}.goal-number{display:flex;justify-content:center;align-items:baseline;gap:9px;color:var(--green);font-size:18px}.goal-number b{font-size:34px}.progress{height:13px;background:#e8e2d0;border-radius:20px;overflow:hidden;margin:14px 0}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7da77b,#c9a15c);border-radius:20px;transition:width .3s}.goal-card label{display:block;text-align:right;font-size:13px;margin-top:18px}.goal-edit{display:flex;gap:8px;margin-top:7px}.goal-edit input{min-width:0;flex:1;border:1px solid #d9caa7;border-radius:12px;padding:10px;font:inherit}.goal-edit button,.contact-link{border:0;border-radius:12px;background:#24533e;color:white;padding:10px 14px;font-weight:700;text-decoration:none}.mini-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.mini-stats .soft-card{margin:0;text-align:center}.mini-stats span{display:block;color:#71806b;font-size:12px}.mini-stats b{display:block;color:var(--green);font-size:26px;margin-top:5px}.dua-card small{color:#a27c36;font-weight:800}.dua-card p{font-size:16px;color:#284d39}.about-card{text-align:center}.about-mark{font-size:40px}.about-card h3{color:var(--green);margin:5px}.about-card hr{border:0;border-top:1px solid #e7d9b8;margin:16px 0}.contact-link{display:inline-block;margin-top:10px}
+.update-card{background:#fffaf0;border:1px solid #e2d3ad;border-radius:18px;padding:15px;margin:12px 0;box-shadow:0 5px 16px #465b3210}.update-item{padding:12px 0;border-bottom:1px solid #eadfc6}.update-item:last-child{border-bottom:0}.update-item b{color:#24533e}.update-item p{margin:5px 0 0;color:#65745e;font-size:13px;line-height:1.8}.version-pill{display:inline-block;background:#e3ecd9;color:#24533e;border-radius:20px;padding:5px 10px;font-size:12px;font-weight:800}
+.update-modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:#142b20a8}.update-modal.show{display:grid}.update-box{width:min(100%,390px);background:#fffaf0;border:2px solid #d9c18b;border-radius:22px;padding:20px;text-align:center;box-shadow:0 15px 50px #0004}.update-box h3{margin:5px 0 8px;color:#24533e}.update-box p{font-size:14px;line-height:1.8;color:#64715d}.update-actions{display:flex;gap:8px;margin-top:15px}.update-actions button{flex:1;border:0;border-radius:12px;padding:12px;font:inherit;font-weight:800}.update-now{background:#24533e;color:white}.update-later{background:#eee5d2;color:#53604f}
+@media(max-width:380px){.bottom-nav button span{font-size:9px}.bottom-nav{gap:1px}}
 </style>
 </head>
 <body>
 <main class="app">
-<header><div class="brand">🌿 طمأنينة</div><div class="pill">اليوم: <b id="today">0</b></div></header>
+<div id="homePanel">
+<header><div class="brand">🌿 عالمي مع الذكر</div><div class="pill">اليوم: <b id="today">0</b></div></header>
 <section><h1 id="heading">الحمد لله</h1><p class="subtitle">اختر الذكر، ثم اضغط مع كل مرة</p></section>
 <section class="phrases" aria-label="اختيار الذكر">
 <button class="active" data-phrase="الحمد لله">الحمد لله</button>
@@ -74,8 +77,10 @@ footer{text-align:center;font-size:10px;color:#78816f}
 <section class="scene" id="scene">
 <div class="sun"></div><div class="distant"></div><div class="ground"></div>
 <div class="flower f1">🌼</div><div class="flower f2">🌸</div><div class="flower f3">🌷</div>
-<div class="stars" id="starscape"></div>
+
 <div class="plant" id="plant">🌱</div>
+<canvas id="forestCanvas" aria-label="غابة تنمو مع الاستغفار"></canvas>
+<div class="forest-label" id="forestLabel" hidden><b>🌳 كل ذكر يغرس شجرة — <span id="treeCount">0</span> شجرة</b></div>
 <div class="jar-shell" id="jarShell">
 <div class="jar-mouth"></div>
 <div class="jar-glass"><canvas id="beadCanvas"></canvas></div>
@@ -83,54 +88,125 @@ footer{text-align:center;font-size:10px;color:#78816f}
 </div>
 </section>
 <section class="stats">
-<div class="stat">هذا الذكر<b id="current">0</b></div>
+<div class="stat"><span id="currentLabel">عدد الأشجار</span><b id="current">0</b></div>
 <div class="stat">إجمالي اليوم<b id="daily">0</b></div>
 <div class="stat">الإجمالي الكلي<b id="total">0</b></div>
 </section>
 <button class="action" id="add">الحمد لله</button>
 <p class="hint">كل ضغطة تُسجّل مرة واحدة 🤍</p>
 <section class="worlds">
-<button class="active" data-world="jar">🫙 العلبة</button>
-<button data-world="garden">🌱 الحديقة</button>
-<button data-world="sky">🌌 السماء</button>
+<button data-world="jar">🫙 العلبة</button>
+<button class="active" data-world="garden">🌳 الشجرة</button>
 </section>
-<button class="reset" id="soundToggle">🔊 الصوت: مغلق</button>
+<button class="reset" id="soundToggle">🔔 الصوت: يعمل</button>
 <button class="reset" id="reset">تصفير عداد هذا الذكر فقط</button>
+<button class="reset" id="resetForest">🌳 تصفير الغابة وإعادة زراعتها</button>
 <footer>يحفظ التطبيق أعدادك على هذا الجهاز — يعمل دون إنترنت</footer>
+</div>
+<section id="page-adhkar" class="extra-page" hidden>
+  <h2>🌿 أذكار متنوعة</h2><p class="page-lead">اختر الذكر الذي تحب أن تردده اليوم.</p>
+  <div class="quick-list">
+    <button data-quick="الحمد لله">الحمد لله <span>ذكر الحمد</span></button>
+    <button data-quick="سبحان الله">سبحان الله <span>ذكر التسبيح</span></button>
+    <button data-quick="أستغفر الله">أستغفر الله <span>الاستغفار</span></button>
+    <button data-quick="الله أكبر">الله أكبر <span>التكبير</span></button>
+    <button data-quick="لا إله إلا الله">لا إله إلا الله <span>كلمة التوحيد</span></button>
+    <button data-quick="اللهم صل وسلم على نبينا محمد">اللهم صل وسلم على نبينا محمد <span>الصلاة على النبي ﷺ</span></button>
+  </div>
+  <div class="soft-card"><b>تذكير لطيف</b><p>اجعل لك وردًا يسيرًا تستطيع المحافظة عليه، فالقليل الدائم خير من الكثير المنقطع.</p></div>
+</section>
+<section id="page-goal" class="extra-page" hidden>
+  <h2>🎯 وردي اليومي</h2><p class="page-lead">حدد هدفًا بسيطًا، وتقدم إليه بهدوء.</p>
+  <div class="soft-card goal-card"><div class="goal-number"><b id="goalDone">0</b><span>من</span><b id="goalTarget">100</b></div><div class="progress"><i id="goalBar"></i></div><label for="goalInput">هدفي اليومي</label><div class="goal-edit"><input id="goalInput" type="number" min="1" max="10000" value="100"><button id="saveGoal">حفظ الهدف</button></div><p id="goalMessage">كل ذكر خطوة جميلة 🌱</p></div>
+</section>
+<section id="page-stats" class="extra-page" hidden>
+  <h2>📊 إنجازاتي</h2><p class="page-lead">تابع أثر الاستمرار يومًا بعد يوم.</p>
+  <div class="mini-stats"><div class="soft-card"><span>إجمالي الأذكار</span><b id="statTotal">0</b></div><div class="soft-card"><span>أذكار اليوم</span><b id="statToday">0</b></div><div class="soft-card"><span>هدف اليوم</span><b id="statGoal">100</b></div></div>
+  <div class="soft-card"><b>كلمة لك</b><p>لا تقارن وردك بأحد؛ المهم أن يكون لك نصيب ثابت من الذكر.</p></div>
+</section>
+<section id="page-dua" class="extra-page" hidden>
+  <h2>🤲 أدعية قصيرة</h2><p class="page-lead">اقرأ ما تيسر، وادعُ الله بما في قلبك.</p>
+  <article class="dua-card"><small>دعاء الطمأنينة</small><p>اللهم إني أسألك قلبًا مطمئنًا، ونفسًا راضية، وحياةً عامرةً بذكرك.</p></article>
+  <article class="dua-card"><small>دعاء التيسير</small><p>اللهم يسّر لي أمري، واشرح لي صدري، واكتب لي الخير حيث كان.</p></article>
+  <article class="dua-card"><small>دعاء الشكر</small><p>اللهم أعنّي على ذكرك وشكرك وحسن عبادتك.</p></article>
+  <article class="dua-card"><small>دعاء الاستغفار</small><p>رب اغفر لي وتب عليّ، إنك أنت التواب الرحيم.</p></article>
+</section>
+<section id="page-updates" class="extra-page" hidden>
+  <h2>🆕 التحديثات</h2><p class="page-lead">آخر الإضافات والتحسينات في تطبيق طمأنينة.</p>
+  <div class="update-card"><span class="version-pill" id="installedVersion">الإصدار 1.2.0</span><div id="updateHistory"><div class="update-item"><b>الإصدار 1.2.0 — تحسينات التطبيق</b><p>فصل وضع العلبة عن الغابة، وتحسين دورة الكرات والصوت، وإضافة نظام إشعار التحديثات.</p></div></div></div>
+  <div class="soft-card"><b>🔄 التحقق من التحديثات</b><p id="updateStatus">سيتم التحقق تلقائيًا عند فتح التطبيق، ويمكنك التحقق الآن.</p><button class="contact-link" id="checkUpdates" type="button">تحقق الآن</button></div>
+</section>
+<section id="page-about" class="extra-page" hidden>
+  <h2>💚 عن طمأنينة</h2><div class="soft-card about-card"><div class="about-mark">🌿</div><h3>طمأنينة</h3><p>مساحة هادئة تساعدك على المحافظة على الذكر، ومتابعة وردك اليومي، وتذكّر أن بذكر الله تطمئن القلوب.</p><hr><b>المهندس عبدالرحمن سامي</b><p>تطوير ومتابعة التطبيق</p><p>لديك نصيحة أو اقتراح؟ يسعدنا سماعك.</p><a class="contact-link" href="https://wa.me/967771072866" target="_blank" rel="noopener">تواصل معنا عبر واتساب</a></div>
+  <div class="soft-card"><b>تنبيه حول البيانات</b><p>عداداتك محفوظة محليًا على هذا الجهاز. عند مسح بيانات المتصفح أو تغيير الجهاز قد تفقدها.</p></div>
+</section>
+<nav class="bottom-nav" aria-label="التنقل داخل التطبيق">
+ <button class="active" data-page="home">🏠<span>الرئيسية</span></button><button data-page="adhkar">📿<span>الأذكار</span></button><button data-page="goal">🎯<span>وردي</span></button><button data-page="dua">🤲<span>أدعية</span></button><button data-page="stats">📊<span>إنجازاتي</span></button><button data-page="updates">🆕<span>تحديثات</span></button><button data-page="about">💚<span>عنّا</span></button>
+</nav>
 </main>
+<div class="update-modal" id="updateModal" role="dialog" aria-modal="true" aria-labelledby="updateTitle">
+ <div class="update-box"><div style="font-size:38px">🎉</div><h3 id="updateTitle">يتوفر تحديث جديد!</h3><p id="updateModalText">أضفنا تحسينات جديدة إلى طمأنينة.</p><div class="update-actions"><button class="update-now" id="updateNow">تحديث الآن</button><button class="update-later" id="updateLater">لاحقًا</button></div></div>
+</div>
 <script>
 const $=id=>document.getElementById(id);
+const APP_VERSION='1.3.0';
 const todayKey=new Date().toLocaleDateString('en-CA');
 let store=JSON.parse(localStorage.getItem('dhikr_v2')||'{}');
 if(store.date!==todayKey){store.date=todayKey;store.daily=0;store.byDay={}}
 store.counts=store.counts||{'الحمد لله':0,'سبحان الله':0,'أستغفر الله':0};
 store.daily=store.daily||0;store.total=store.total||0;
-let selected='الحمد لله',world='jar';
-const counts=()=>store.counts[selected]||0;
+// فصل عداد العلبة عن عداد الغابة: كل وضع مستقل تمامًا عن الآخر.
+store.jarCounts=store.jarCounts||{...store.counts};
+store.trees=typeof store.trees==='number'?store.trees:0;
+let selected='الحمد لله',world='garden';
+let forestGrowth=1;
+const counts=()=>store.jarCounts[selected]||0;
+const activeModeCount=()=>world==='jar'?counts():(store.trees||0);
 function save(){localStorage.setItem('dhikr_v2',JSON.stringify(store));render()}
 function render(){
 $('heading').textContent=selected;$('add').textContent=selected;
-$('phraseCount').textContent=counts();$('current').textContent=counts();
+$('phraseCount').textContent=counts();$('current').textContent=activeModeCount();$('currentLabel').textContent=world==='jar'?'هذا الذكر':'عدد الأشجار';
 $('today').textContent=store.daily;$('daily').textContent=store.daily;$('total').textContent=store.total;
 const level=Math.min(5,Math.floor(store.total/25));
 $('plant').textContent=['🌱','🌿','🪴','🌳','🌸','🌺'][level];
-const sf=$('starscape');sf.innerHTML='';
-for(let i=0;i<Math.min(42,Math.floor(store.total/2));i++){let s=document.createElement('span');s.textContent='✦';s.style.left=((i*37)%94+3)+'%';s.style.top=((i*23)%78+4)+'%';s.style.animationDelay=(i%5)*.3+'s';sf.appendChild(s)}
+updateForest();
 }
 document.querySelectorAll('[data-phrase]').forEach(btn=>btn.addEventListener('click',()=>{
 selected=btn.dataset.phrase;document.querySelectorAll('[data-phrase]').forEach(x=>x.classList.toggle('active',x===btn));render();
 }));
 document.querySelectorAll('[data-world]').forEach(btn=>btn.addEventListener('click',()=>{
-world=btn.dataset.world;document.querySelectorAll('[data-world]').forEach(x=>x.classList.toggle('active',x===btn));
-$('scene').classList.toggle('garden',world==='garden');$('scene').classList.toggle('sky',world==='sky');
-$('jarShell').style.display=world==='jar'?'block':'none';$('plant').style.display=world==='garden'?'block':'none';$('starscape').style.display=world==='sky'?'block':'none';
+world=btn.dataset.world;render();document.querySelectorAll('[data-world]').forEach(x=>x.classList.toggle('active',x===btn));
+$('scene').classList.toggle('garden',world==='garden');
+$('jarShell').style.display=world==='jar'?'block':'none';$('plant').style.display=world==='garden'?'none':'block';
+$('forestLabel').hidden=world!=='garden';
+// انتظر حتى يكتمل إظهار العلبة قبل قياس مساحة الـ canvas؛
+// كانت الكرات تُحسب وهي مخفية فتظهر متأخرة أو خارج مكانها.
+if(world==='jar'){
+  requestAnimationFrame(()=>{
+    resize();
+    initBeads();
+  });
+}else{
+  // انتظر اكتمال تبديل العرض حتى يحصل Canvas على أبعاده الحقيقية قبل الرسم.
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    resizeForest();
+    drawForest();
+  }));
+}
 }));
 $('reset').addEventListener('click',()=>{
-if(confirm('هل تريد تصفير عداد هذا الذكر؟ لن يتغير إجمالي اليوم.')){store.counts[selected]=0;save();beads=[];draw()}
+if(confirm('هل تريد تصفير عداد هذا الذكر في وضع العلبة فقط؟ لن تتغير الغابة أو الإجماليات.')){store.jarCounts[selected]=0;save();beads=[];draw()}
+});
+$('resetForest').addEventListener('click',()=>{
+ if(confirm('هل تريد تصفير الغابة فقط؟ ستختفي الأشجار وتبدأ من جديد، دون تغيير عدادات الأذكار أو إجمالي إنجازاتك.')){
+  store.trees=0;save();drawForest();
+ }
 });
 $('add').addEventListener('click',()=>{
-store.counts[selected]=(store.counts[selected]||0)+1;store.daily++;store.total++;save();
-if(world==='jar')addBead();
+if(world==='jar'){store.jarCounts[selected]=(store.jarCounts[selected]||0)+1;addBead();}
+else{store.trees=(store.trees||0)+1;}
+store.daily++;store.total++;save();
+// render() حدّث الغابة مرة واحدة؛ لا نكرر رسم المشهد في نفس الضغطة.
 playSoftSound();
 if(navigator.vibrate)navigator.vibrate(8);
 if(counts()%33===0){$('add').textContent='ما شاء الله، أحسنت';setTimeout(()=>$('add').textContent=selected,1100)}
@@ -138,7 +214,8 @@ if(counts()%33===0){$('add').textContent='ما شاء الله، أحسنت';set
 // Beads use fixed resting slots: each bead falls smoothly into place
 // without repeated collisions or irritating bouncing.
 const canvas=$('beadCanvas'),ctx=canvas.getContext('2d');
-let beads=[], soundOn=false, audioCtx=null;
+let beads=[], soundOn=localStorage.getItem('tamanina_sound')!=='off', audioCtx=null, beadFrame=null;
+$('soundToggle').textContent=soundOn?'🔔 الصوت: يعمل':'🔇 الصوت: مغلق';
 function resize(){
  const r=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);
  canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);
@@ -151,21 +228,32 @@ function slotFor(index){
  return {x:w/2+(col-(cols-1)/2)*gap+offset,
          y:h-18-row*19};
 }
+const BEAD_CAPACITY=65;
+// عدد كرات العلبة يعتمد على عداد العلبة وحده، وتبدأ دورة بصرية جديدة كل 65 كرة.
+function visualBeadCount(){
+ const total=counts();
+ return total===0?0:((total-1)%BEAD_CAPACITY)+1;
+}
 function addBead(){
+ // عند امتلاء الكأس، ابدأ دورة بصرية جديدة دون المساس بالعدادات.
+ if(beads.length>=BEAD_CAPACITY){beads=[];draw();}
  const index=beads.length, target=slotFor(index);
- beads.push({x:canvas.clientWidth/2+(Math.random()-.5)*8,y:-18,
-   tx:target.x,ty:target.y,r:10.2,started:performance.now(),duration:520});
+ const sx=canvas.clientWidth/2+(Math.random()-.5)*8;
+ beads.push({x:sx,y:-18,sx,sy:-18,tx:target.x,ty:target.y,r:10.2,started:performance.now(),duration:520});
+ if(beadFrame===null)beadFrame=requestAnimationFrame(draw);
 }
 function draw(now=performance.now()){
+ beadFrame=null;
  const w=canvas.clientWidth,h=canvas.clientHeight;
+ let moving=false;
  ctx.clearRect(0,0,w,h);
  beads.forEach(b=>{
    if(b.duration){
      const p=Math.min(1,(now-b.started)/b.duration);
      const ease=1-Math.pow(1-p,3);
-     b.x=b.x+(b.tx-b.x)*ease;
-     b.y=(-18)+(b.ty+18)*ease;
-     if(p>=1){b.x=b.tx;b.y=b.ty;b.duration=0}
+     b.x=b.sx+(b.tx-b.sx)*ease;
+     b.y=b.sy+(b.ty-b.sy)*ease;
+     if(p>=1){b.x=b.tx;b.y=b.ty;b.duration=0}else moving=true
    }
    ctx.save();
    ctx.shadowColor='rgba(35,45,35,.20)';ctx.shadowBlur=3;ctx.shadowOffsetY=2;
@@ -177,46 +265,198 @@ function draw(now=performance.now()){
    ctx.beginPath();ctx.ellipse(b.x-b.r*.28,b.y-b.r*.35,b.r*.22,b.r*.12,-.6,0,Math.PI*2);
    ctx.fillStyle='rgba(255,255,255,.85)';ctx.fill();ctx.restore();
  });
- requestAnimationFrame(draw);
+ if(moving)beadFrame=requestAnimationFrame(draw);
 }
 function initBeads(){
  beads=[];
- const n=Math.min(counts(),65);
+ const n=visualBeadCount();
  for(let i=0;i<n;i++){
    const p=slotFor(i);
    beads.push({x:p.x,y:p.y,tx:p.x,ty:p.y,r:10.2,duration:0});
  }
  draw(performance.now());
 }
-function playSoftSound(){
+// الغابة مستقلة: كل ضغطة في وضع الشجرة تضيف شجرة دون تغيير عداد العلبة.
+const forest=$('forestCanvas'), fctx=forest.getContext('2d');
+let forestAnim=1, forestFrame=0;
+function resizeForest(){
+ if(world!=='garden')return;
+ const r=forest.getBoundingClientRect();
+ if(r.width<2||r.height<2)return;
+ const dpr=Math.min(window.devicePixelRatio||1,1.5);
+ const cw=Math.round(r.width*dpr),ch=Math.round(r.height*dpr);
+ if(forest.width!==cw||forest.height!==ch){
+   forest.width=cw;forest.height=ch;
+   fctx.setTransform(dpr,0,0,dpr,0,0);
+ }
+ drawForest();
+}
+function updateForest(){
+ const n=store.trees||0;
+ if($('treeCount'))$('treeCount').textContent=n.toLocaleString('ar');
+ if(world==='garden')drawForest();
+}
+function drawTree(x,groundY,scale,age){
+ const h=scale*(.25+.75*age), trunk=7*scale;
+ fctx.save();fctx.translate(x,groundY);fctx.scale(h,h);
+ // ظل وجذع
+ fctx.fillStyle='rgba(35,67,39,.16)';fctx.beginPath();fctx.ellipse(2,3,25,6,0,0,Math.PI*2);fctx.fill();
+ fctx.fillStyle='#805536';fctx.fillRect(-trunk/2,-48,trunk,49);
+ fctx.strokeStyle='#9a7048';fctx.lineWidth=2;fctx.beginPath();fctx.moveTo(0,-24);fctx.lineTo(-10,-36);fctx.moveTo(0,-30);fctx.lineTo(10,-41);fctx.stroke();
+ // تاج طبقات بألوان طبيعية
+ const greens=['#397b4c','#4b9657','#69ad66'];
+ for(let k=0;k<3;k++){
+  fctx.beginPath();fctx.moveTo(0,-105+k*22);fctx.quadraticCurveTo(-43-k*2,-70+k*18,-34-k*2,-55+k*20);fctx.quadraticCurveTo(-43,-39+k*20,-7,-48+k*20);fctx.quadraticCurveTo(0,-35+k*20,7,-48+k*20);fctx.quadraticCurveTo(43,-39+k*20,34+k*2,-55+k*20);fctx.quadraticCurveTo(43+k*2,-70+k*18,0,-105+k*22);fctx.closePath();fctx.fillStyle=greens[k];fctx.fill();
+ }
+ fctx.fillStyle='#a7d98a';fctx.beginPath();fctx.arc(-10,-82,4,0,Math.PI*2);fctx.arc(13,-67,3,0,Math.PI*2);fctx.fill();
+ fctx.restore();
+}
+function drawForest(growing=false){
+ if(!forest||!fctx)return;
+ const w=forest.clientWidth,h=forest.clientHeight;if(!w||!h)return;
+ const n=store.trees||0, shown=Math.min(n,200);
+ fctx.clearRect(0,0,w,h);
+ const sky=fctx.createLinearGradient(0,0,0,h);sky.addColorStop(0,'#bfe7ef');sky.addColorStop(.62,'#e3f2d2');sky.addColorStop(1,'#8fbd79');fctx.fillStyle=sky;fctx.fillRect(0,0,w,h);
+ // شمس وغيوم
+ fctx.fillStyle='#fff0b0';fctx.shadowColor='#fff2bd';fctx.shadowBlur=22;fctx.beginPath();fctx.arc(w-48,52,23,0,Math.PI*2);fctx.fill();fctx.shadowBlur=0;
+ fctx.fillStyle='rgba(255,255,255,.65)';for(const [cx,cy] of [[w*.22,54],[w*.55,34]]){fctx.beginPath();fctx.arc(cx,cy,12,0,Math.PI*2);fctx.arc(cx+13,cy-5,16,0,Math.PI*2);fctx.arc(cx+29,cy,11,0,Math.PI*2);fctx.fill()}
+ // تلال بعيدة
+ fctx.fillStyle='#a4cc91';fctx.beginPath();fctx.moveTo(0,h*.62);fctx.quadraticCurveTo(w*.28,h*.34,w*.55,h*.63);fctx.quadraticCurveTo(w*.78,h*.38,w,h*.59);fctx.lineTo(w,h);fctx.lineTo(0,h);fctx.fill();
+ fctx.fillStyle='#6eaa68';fctx.beginPath();fctx.moveTo(0,h*.76);fctx.quadraticCurveTo(w*.4,h*.54,w*.68,h*.75);fctx.quadraticCurveTo(w*.86,h*.62,w,h*.72);fctx.lineTo(w,h);fctx.lineTo(0,h);fctx.fill();
+ fctx.fillStyle='#67904f';fctx.fillRect(0,h*.84,w,h*.16);
+ // حتى 200 شجرة صغيرة مرتبة في 20 عمودًا و10 صفوف لتظهر الغابة كاملة.
+ const cols=20,rows=10,cellW=w/cols,cellH=Math.max(1,h*.68/rows);
+ const positions=[];
+ for(let i=0;i<shown;i++){
+   const row=Math.floor(i/cols),col=i%cols;
+   const xx=(col+.5)*cellW;
+   const yy=h*.83-row*cellH;
+   const scale=Math.min(.17,cellW/90,cellH/115);
+   positions.push({x:xx,y:yy,scale,i});
+ }
+ positions.sort((a,b)=>a.y-b.y);
+ positions.forEach(o=>drawTree(o.x,o.y,o.scale,1));
+ if(n===0){fctx.fillStyle='#315d3d';fctx.font='bold 17px system-ui';fctx.textAlign='center';fctx.fillText('ابدأ الذكر… وستنمو غابتك 🌱',w/2,h*.72)}
+ if(n>200){fctx.fillStyle='#fffdf0';fctx.font='bold 11px system-ui';fctx.textAlign='center';fctx.fillText('وصلت الغابة إلى 200 شجرة ظاهرة 🌳',w/2,h-10)}
+}
+async function playSoftSound(){
  if(!soundOn)return;
  try{
-   audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();
-   if(audioCtx.state==='suspended')audioCtx.resume();
-   const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
-   osc.type='sine';osc.frequency.setValueAtTime(660,audioCtx.currentTime);
-   osc.frequency.exponentialRampToValueAtTime(440,audioCtx.currentTime+.055);
-   gain.gain.setValueAtTime(.0001,audioCtx.currentTime);
-   gain.gain.exponentialRampToValueAtTime(.045,audioCtx.currentTime+.008);
-   gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+.085);
-   osc.connect(gain);gain.connect(audioCtx.destination);
-   osc.start();osc.stop(audioCtx.currentTime+.09);
- }catch(e){}
+   const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+   if(!AudioContextClass)return;
+   audioCtx=audioCtx||new AudioContextClass();
+   if(audioCtx.state==='suspended')await audioCtx.resume();
+   const now=audioCtx.currentTime;
+   // نغمة واضحة وقصيرة مع تحديد مستوى الخرج لتجنب التشويش.
+   const master=audioCtx.createGain();
+   const limiter=audioCtx.createDynamicsCompressor();
+   master.gain.setValueAtTime(0.72,now);
+   master.gain.exponentialRampToValueAtTime(0.001,now+0.24);
+   limiter.threshold.setValueAtTime(-8,now);
+   limiter.knee.setValueAtTime(8,now);
+   limiter.ratio.setValueAtTime(8,now);
+   limiter.attack.setValueAtTime(0.003,now);
+   limiter.release.setValueAtTime(0.12,now);
+   master.connect(limiter);limiter.connect(audioCtx.destination);
+   [880,1175].forEach((frequency,index)=>{
+     const osc=audioCtx.createOscillator();
+     const toneGain=audioCtx.createGain();
+     osc.type='sine';
+     osc.frequency.setValueAtTime(frequency,now);
+     toneGain.gain.setValueAtTime(index===0?0.8:0.38,now);
+     toneGain.gain.exponentialRampToValueAtTime(0.001,now+0.19);
+     osc.connect(toneGain);toneGain.connect(master);
+     osc.start(now+(index*0.035));osc.stop(now+0.22);
+   });
+ }catch(e){console.warn('تعذر تشغيل صوت الذكر:',e);}
 }
-$('soundToggle').addEventListener('click',()=>{
+$('soundToggle').addEventListener('click',async()=>{
  soundOn=!soundOn;
- $('soundToggle').textContent=soundOn?'🔔 الصوت: يعمل':'🔊 الصوت: مغلق';
- if(soundOn)playSoftSound();
+ localStorage.setItem('tamanina_sound',soundOn?'on':'off');
+ $('soundToggle').textContent=soundOn?'🔔 الصوت: يعمل':'🔇 الصوت: مغلق';
+ if(soundOn)await playSoftSound();
 });
-window.addEventListener('resize',()=>{resize();initBeads()});
-render();resize();initBeads();
-</script>
-
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-  });
+let forestResizeTimer;
+window.addEventListener('resize',()=>{
+ clearTimeout(forestResizeTimer);
+ forestResizeTimer=setTimeout(()=>{
+   if(world==='jar'){resize();initBeads()}
+   else requestAnimationFrame(()=>requestAnimationFrame(resizeForest));
+ },120);
+});
+render();$('scene').classList.add('garden');$('jarShell').style.display='none';$('plant').style.display='none';$('forestLabel').hidden=false;resizeForest();
+// صفحات التطبيق والتنقل بينها
+const homePanel=$('homePanel');
+function showPage(name){
+ homePanel.hidden=name!=='home';
+ document.querySelectorAll('.extra-page').forEach(p=>p.hidden=p.id!=='page-'+name);
+ document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));
+ if(name==='goal'||name==='stats')updateGoal();
+ window.scrollTo({top:0,behavior:'smooth'});
 }
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+document.querySelectorAll('[data-quick]').forEach(b=>b.addEventListener('click',()=>{
+ const phrase=b.dataset.quick;
+ if(!store.counts[phrase])store.counts[phrase]=0;
+ selected=phrase;
+ if(!document.querySelector('[data-phrase="'+phrase+'"]')){
+   const btn=document.createElement('button');btn.dataset.phrase=phrase;btn.textContent=phrase;
+   btn.addEventListener('click',()=>{selected=phrase;document.querySelectorAll('[data-phrase]').forEach(x=>x.classList.toggle('active',x===btn));render()});
+   document.querySelector('.phrases').appendChild(btn);
+ }
+ document.querySelectorAll('[data-phrase]').forEach(x=>x.classList.toggle('active',x.dataset.phrase===phrase));
+ render();showPage('home');
+}));
+let dailyGoal=Number(localStorage.getItem('tamanina_goal')||100);
+function updateGoal(){
+ const done=store.daily||0, pct=Math.min(100,done/dailyGoal*100);
+ $('goalDone').textContent=done;$('goalTarget').textContent=dailyGoal;$('goalBar').style.width=pct+'%';
+ $('goalInput').value=dailyGoal;$('goalMessage').textContent=done>=dailyGoal?'ما شاء الله! حققت هدفك اليوم 🌟':'باقي لك '+Math.max(0,dailyGoal-done)+' ذكر لإكمال هدفك 🌱';
+ $('statTotal').textContent=store.total||0;$('statToday').textContent=done;$('statGoal').textContent=dailyGoal;
+}
+$('saveGoal').addEventListener('click',()=>{const v=Math.max(1,Math.min(10000,Number($('goalInput').value)||100));dailyGoal=v;localStorage.setItem('tamanina_goal',String(v));updateGoal()});
+const oldSave=save;
+save=function(){localStorage.setItem('dhikr_v2',JSON.stringify(store));render();updateGoal()};
+updateGoal();
+
+// نظام تحديثات تلقائي: يقرأ updates.json المنشور بجانب التطبيق.
+let latestUpdate=null;
+function compareVersions(a,b){
+ const aa=String(a).split('.').map(Number),bb=String(b).split('.').map(Number);
+ for(let i=0;i<Math.max(aa.length,bb.length);i++){const x=aa[i]||0,y=bb[i]||0;if(x>y)return 1;if(x<y)return -1;}return 0;
+}
+function renderUpdateHistory(data){
+ const list=Array.isArray(data.history)?data.history:[];
+ $('installedVersion').textContent='الإصدار الحالي '+APP_VERSION;
+ if(list.length){$('updateHistory').innerHTML=list.map(item=>`<div class="update-item"><b>${escapeUpdateText(item.version||'تحديث')} — ${escapeUpdateText(item.title||'تحسينات')}</b><p>${escapeUpdateText(item.notes||'')}</p></div>`).join('');}
+}
+function escapeUpdateText(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+async function checkForUpdates(showStatus=true){
+ const status=$('updateStatus');if(showStatus&&status)status.textContent='جارٍ التحقق من وجود تحديثات…';
+ try{
+  const response=await fetch('./updates.json?check='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw new Error('manifest unavailable');
+  const data=await response.json();latestUpdate=data;renderUpdateHistory(data);
+  if(compareVersions(data.version||APP_VERSION,APP_VERSION)>0){
+   const dismissed=localStorage.getItem('tamanina_dismissed_update');
+   if(dismissed!==String(data.version)){
+    $('updateModalText').textContent=(data.title?data.title+' — ':'')+(data.notes||'يتوفر إصدار جديد من التطبيق.');
+    $('updateModal').classList.add('show');
+   }
+   if(status)status.textContent='يتوفر إصدار جديد '+data.version+'؛ افتح إشعار التحديث لتثبيته.';
+  }else if(status){status.textContent='تطبيقك محدّث، أنت تستخدم الإصدار '+APP_VERSION+' ✅';}
+ }catch(e){if(status)status.textContent='تعذر الاتصال بخدمة التحديث الآن. تأكد من الإنترنت وحاول مرة أخرى.';}
+}
+$('updateLater').addEventListener('click',()=>{
+ if(latestUpdate)localStorage.setItem('tamanina_dismissed_update',String(latestUpdate.version||''));
+ $('updateModal').classList.remove('show');
+});
+$('updateNow').addEventListener('click',()=>{
+ $('updateModal').classList.remove('show');
+ const url=new URL(location.href);url.searchParams.set('refresh',Date.now());location.replace(url.toString());
+});
+$('checkUpdates').addEventListener('click',()=>checkForUpdates(true));
+checkForUpdates(false);
+setInterval(()=>checkForUpdates(false),5*60*1000);
 </script>
 </body></html>
